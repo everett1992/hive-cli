@@ -1,0 +1,68 @@
+# A command line podcast player for linux
+1. Manages your podcast information with www.buzzradio.xyz
+2. Plays audio with music player deamon (Can I play audio files with ruby instead?)
+
+# Working on
+1. Fetching data from buzz.
+2. Modeling data.
+3. Playing episodes.
+4. Updating episode state on buzz.
+5. Modifying the queue.
+
+# Fetching data from buzz
+1. Logging in
+
+  Handled in `Hive::Buzz#request` by adding user_id_hash url parameter. The
+  requires the user to export the environment variable `BUZZ_USER_ID`.
+
+2. Requesting data
+
+  There is a thin wrapper around json requests that stores json responses
+  as id indexed models. There's no error handleing here.
+  This is in `Hive::Buzz.store` and `Hive::Model`
+
+# Modeling data.
+1. Basic models
+
+  Indexed by model name and id in `Hive::STORE`
+
+2. Extracts relationships (mapping of episode_id to an episode model), and
+   fields into methods.
+
+3. TODO: fetches missing data. If an episode belongs to a podcast that isn't
+   in the store it won't be fetched (but it easy to implement)
+
+# Playing Episodes
+0. Find something other than mpd to play episodes
+
+  I already have MPD configured on my desktop but others may not. Mpd is
+  good because it provedes an evented interface through `ruby-mpd` but
+  it seems to require that files are added to it's database before they
+  can be played making streaming impossible and data management a little harder.
+
+  However I'll start implementing this with MPD as a target and change it later.
+
+1. File management
+
+  MPD requires that files are in it's database to play them so we need to
+  download episodes and update the database, then delete them later.
+
+2. Playlist management
+
+  What should happen to the current MPD playlist when Hive starts?
+
+3. Queueing episodes as they are downloaded, keeping queue order consistent
+
+# Updating episode state in buzz
+
+1. Listening to progress events from the audio player
+
+  Finsished, time change, (track removal?)
+
+# Modifying the queue
+
+1. Getting suggestions
+
+2. Changing queue order
+
+3. Automatically adding episodes from suggestions.
