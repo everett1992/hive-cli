@@ -7,6 +7,8 @@ require 'json'
 require 'irb'
 
 module Hive
+
+  # Wrapper around buzz API
   class Buzz
     def self.queued_episodes
       request('queued_episodes')['queued_episodes']
@@ -31,8 +33,5 @@ module Hive
 
       STORE.add_json res.body
     end
-
-    private
-
   end
 end

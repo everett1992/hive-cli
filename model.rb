@@ -1,5 +1,7 @@
 require_relative 'store.rb'
 module Hive
+
+  # Base model class
   class Model
     def initialize obj
       @obj = obj
@@ -45,6 +47,10 @@ module Hive
   class Episode < Model
     has_one :podcast
     has_field :title, :audio_url, :duration, :ed_is_played, :ed_current_position
+
+    def file
+      AudioFile.new self
+    end
   end
 
   class Podcast < Model

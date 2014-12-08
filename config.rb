@@ -1,5 +1,6 @@
 module Hive
   module Config
+
     class Mpd
       def self.host
         'localhost'
@@ -7,6 +8,10 @@ module Hive
 
       def self.port
         '6601'
+      end
+
+      def podcast_directory
+        '~/Music/podcasts'
       end
     end
 

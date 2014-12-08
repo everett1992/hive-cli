@@ -1,4 +1,6 @@
 module Hive
+
+  # Collects instances of model objects.
   class Store
     def initialize
       @store = Hash.new
