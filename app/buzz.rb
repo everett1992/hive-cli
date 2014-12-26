@@ -1,7 +1,5 @@
-require_relative 'config.rb'
-require_relative 'inflections.rb'
-require_relative 'store.rb'
-require_relative 'model.rb'
+require 'lib/store'
+
 require 'net/http'
 require 'json'
 require 'irb'
@@ -31,7 +29,7 @@ module Hive
       req = Net::HTTP::Get.new(url.to_s)
       res = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
 
-      STORE.add_json res.body
+      Hive::STORE.add_json res.body
     end
   end
 end

@@ -1,8 +1,9 @@
 require 'ruby-mpd'
 require 'thor'
 require 'irb'
-require_relative 'config.rb'
-require_relative 'buzz.rb'
+
+require_relative 'initialize'
+require 'buzz'
 
 module Hive
   class AudioFile

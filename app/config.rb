@@ -10,7 +10,7 @@ module Hive
         '6601'
       end
 
-      def podcast_directory
+      def self.podcast_directory
         '~/Music/podcasts'
       end
     end
